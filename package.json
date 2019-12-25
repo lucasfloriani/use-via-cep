@@ -1,6 +1,6 @@
 {
   "name": "use-via-cep",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Hook to abstract the logic to call viacep",
   "author": "lucasfloriani",
   "license": "MIT",
