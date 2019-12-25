@@ -1,7 +1,7 @@
-import { useMyHook } from './'
+import { useViaCep } from './'
 
-describe('useMyHook', () => {
+describe('useViaCep', () => {
   it('is truthy', () => {
-    expect(useMyHook).toBeTruthy()
+    expect(useViaCep).toBeTruthy()
   })
 })

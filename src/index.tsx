@@ -1,23 +1,19 @@
 import * as React from 'react';
+import { Address, EmptyValue, Error, UseViaCepReturn } from './types'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState<{
-    counter: number;
-  }>({
-    counter: 0
-  });
+export const useViaCep = (initialCep = '') : UseViaCepReturn => {
+  const [cep, setCep] = React.useState<string>(initialCep)
+  const [data, setData] = React.useState<Address | EmptyValue | Error>({})
 
   React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++;
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval);
-    };
-  }, []);
+    const regexedCep = cep.replace(/\D/g, '')
+    if (regexedCep.length !== 8) {
+      setData({})
+      return
+    }
 
-  return counter;
-};
+    fetch(`https://viacep.com.br/ws/${regexedCep}/json`).then(resp => resp.json()).then(data => setData(data))
+  }, [cep])
+
+  return { cep, data, setCep }
+}

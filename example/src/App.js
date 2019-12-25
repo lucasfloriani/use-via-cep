@@ -1,13 +1,25 @@
 import React from 'react'
 
-import { useMyHook } from 'use-via-cep'
+import { useViaCep } from 'use-via-cep'
 
 const App = () => {
-  const example = useMyHook()
+  const { cep, data, setCep } = useViaCep()
+
   return (
-    <div>
-      {example}
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        flexFlow: 'column',
+        height: '100vh',
+        justifyContent: 'center',
+        width: '100vw',
+      }}
+    >
+      <input value={cep} onChange={({ target }) => setCep(target.value)} />
+      <pre>{JSON.stringify(data)}</pre>
     </div>
   )
 }
+
 export default App
