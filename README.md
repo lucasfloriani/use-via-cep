@@ -15,13 +15,14 @@ npm install --save use-via-cep
 ```tsx
 import * as React from 'react'
 
-import { useMyHook } from 'use-via-cep'
+import { useViaCep } from 'use-via-cep'
 
 const Example = () => {
-  const example = useMyHook()
+  const { cep, data, setCep } = useViaCep()
   return (
     <div>
-      {example}
+      <input value={cep} onChange={({ target }) => setCep(target.value)} />
+      <pre>{JSON.stringify(data)}</pre>
     </div>
   )
 }
